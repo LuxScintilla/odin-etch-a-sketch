@@ -1,23 +1,29 @@
 const gridContainer = document.querySelector(".grid-container");
-const pixels = document.querySelector(".pixels");
-const pixelValue = document.querySelector(".pixel-value");
 const createButton = document.querySelector(".create");
-let blocks = document.querySelectorAll(".grid-item");
-let canvas = pixels.value * pixels.value;
 
-pixelValue.textContent = pixels.value;
-pixels.oninput = function() {
-    pixelValue.textContent = this.value;
+let chosenPixels;
+let canvas;
+
+function defaultGrid() {
+    for(i = 0; i < 256; i++) {
+        const gridElement = document.createElement("div");
+        gridContainer.appendChild(gridElement).classList.add("grid-item");
+    }
 }
+defaultGrid()
 
 createButton.addEventListener("click", function() {
-    while(gridContainer.lastElementChild) {
-        gridContainer.removeChild(gridContainer.lastElementChild);
+    chosenPixels = prompt("Give me a number, I give you a canvas.")
+
+    canvas = chosenPixels * chosenPixels;
+
+    while(gridContainer.hasChildNodes()) {
+        gridContainer.removeChild(gridContainer.lastChild);
     }
     createGrid()
     
-    gridContainer.style.gridTemplateColumns = `repeat(${pixels.value}, 1fr)`;
-    gridContainer.style.gridTemplateRows = `repeat(${pixels.value}, 1fr)`;
+    gridContainer.style.gridTemplateColumns = `repeat(${chosenPixels}, 1fr)`;
+    gridContainer.style.gridTemplateRows = `repeat(${chosenPixels}, 1fr)`;
  
 });
 
@@ -28,14 +34,10 @@ function createGrid() {
     }
 }
 
-
-for(let block of blocks) {
+let allBlocks = document.querySelectorAll(".grid-item");
+for(let block of allBlocks) {
     block.addEventListener("mouseover", function() {
         block.classList.remove("grid-item");
         block.classList.add("grid-item-colored");
     });
 }
-
-
-
-
