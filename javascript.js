@@ -1,5 +1,5 @@
-const gridContainer = document.querySelector(".grid-container");
-const createButton = document.querySelector(".create");
+const gridContainer = document.querySelector(".canvas");
+const createButton = document.querySelector("#menu-new");
 
 let chosenPixels;
 let canvas;

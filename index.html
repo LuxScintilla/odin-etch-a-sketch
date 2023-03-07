@@ -5,19 +5,106 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <script src="javascript.js" defer></script>
-    <title>Etch-a-Sketch</title>
+    <title>Paint 2.0 Ekaterina Furman</title>
 </head>
 <body>
+    
 
     <div class="main-container">
 
-        <button class="create">Create</button>
 
-        <div class="grid-container">
+        <div class="title-container">
+            <div class="title-left">
+                <img class="logo" src="img/lux-circle-dragon-white.png">
+
+                <p class="title">Untitled - Paint 2.0 (Ekaterina Furman Edition)</p>
+            </div>
+
+            <img class="exit" src="img/exit.png">
+        </div>
+
+
+        <div class="paint-container">
+
+            <div class="tools-container">
+
+                <div class="menu">
+
+                    <p class="menu-item" id="menu-new">New</p>
+
+                    <p class="menu-item" id="menu-clear">Clear</p>
+
+                    <input class="slider" type="range" min="1" max="100" value="50">
+
+                    <p class="slider-output">50</p>
+
+
+
+                </div>
+
+                <img class="tools pencil" src="img/pencil.png">
+                <img class="tools pencil-rainbow" src="img/pencil-rainbow.png">
+                <img class="tools fill" src="img/fill.png">
+                <img class="tools droplet" src="img/droplet.png">
+                <img class="tools eraser" src="img/eraser.png">
+
+            </div>
+
+            <div class="canvas-container">
+                <div class="canvas"></div>
+            </div>
 
         </div>
+
+
+        <div class="color-container">
+
+            <div class="color-picker-container">
+                <input class="color-picker" type="color" value="#000000">
+            </div>
+
+            <div class="preset-colors">
+
+                <div class="color-1" data-value="#000000" ></div>
+                <div class="color-2" data-value="#7f7f7f" ></div>
+                <div class="color-3" data-value="#800203" ></div>
+                <div class="color-4" data-value="#7e8005" ></div>
+                <div class="color-5" data-value="#018003" ></div>
+                <div class="color-6" data-value="#108472" ></div>
+                <div class="color-7" data-value="#020182" ></div>
+                <div class="color-8" data-value="#810181" ></div>
+                <div class="color-9" data-value="#7f7f3f" ></div>
+                <div class="color-10" data-value="#063e40" ></div>
+                <div class="color-11" data-value="#027efc" ></div>
+                <div class="color-12" data-value="#024080" ></div>
+                <div class="color-13" data-value="#4001fc" ></div>
+                <div class="color-14" data-value="#7e4005" ></div>
+                <div class="color-15" data-value="#ffffff" ></div>
+                <div class="color-16" data-value="#c1bfc3" ></div>
+                <div class="color-17" data-value="#fb0304" ></div>
+                <div class="color-18" data-value="#fefe04" ></div>
+                <div class="color-19" data-value="#02fd02" ></div>
+                <div class="color-20" data-value="#04fcfc" ></div>
+                <div class="color-21" data-value="#0201fa" ></div>
+                <div class="color-22" data-value="#ff01fd" ></div>
+                <div class="color-23" data-value="#fcfd83" ></div>
+                <div class="color-24" data-value="#02fe81" ></div>
+                <div class="color-25" data-value="#81fdfc" ></div>
+                <div class="color-26" data-value="#817dfd" ></div>
+                <div class="color-27" data-value="#fc0180" ></div>
+                <div class="color-28" data-value="#fc8044" ></div>
+            
+            </div>
+
+        </div>
+
+
     </div>
+
 
 </body>
 </html>
