@@ -1,0 +1,31 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-container {
+    min-height: 512px;
+    min-width: 512px;
+    display: grid;
+    background-color: white;
+}
+
+.grid-item {
+    border: 1px solid black;
+    background-color: white;
+}
+
+.grid-item-colored {
+    border: 1px solid black;
+    background-color: red;
+}
+
+.pixels {
+    margin-bottom: 10px;
+}
+
+.create {
+    margin-bottom: 10px;
+}
