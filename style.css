@@ -19,7 +19,7 @@ body {
 
 .main-container {
     height: 720px;
-    width: 1024px;
+    width: 900px;
     background-color: #c1c1c1;
     border: 1px solid #e7e7e7;
     box-shadow: 0px 0px 10px 2px #000000;
@@ -68,13 +68,21 @@ body {
 
 .tools-container {
     display: flex;
+    min-width: 320px;
+    padding: 20px;
+    gap: 10px;
+}
+
+.all-tools {
+    display: flex;
     flex-direction: column;
     gap: 3px;
-    padding: 10px;
 }
 
 .menu {
     display: flex;
+    flex: 1;
+    flex-direction: column;
     align-items: center;
     gap: 16px;
     margin-bottom: 15px;
@@ -83,50 +91,37 @@ body {
 .menu-item {
     font-size: 20px;
     cursor: pointer;
+    padding: 5px 12px;
+    border-top: 2px solid #e7e7e7;
+    border-right: 2px solid #1e1e1e;
+    border-bottom: 2px solid #1e1e1e;
+    border-left: 2px solid #e7e7e7;
 }
 
 .menu-item:hover {
     color: red;
 }
 
-.slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 4px;
-    background: #1e1e1e;
-    outline: none;
-    border: 1px solid #c1c1c1;
-    box-shadow: 1px 1px 0px 0px #ffffff;
+.input-box {
+    width: 50px;
+    height: 20px;
+    background: #ffffff;
+    padding: 10px 0px;
+    border-top: 2px solid #1e1e1e;
+    border-right: 2px solid #e7e7e7;
+    border-bottom: 2px solid #e7e7e7;
+    border-left: 2px solid #1e1e1e;
   }
   
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 10px;
-    height: 25px;
-    background: #c1c1c1;
-    border-top: 2px solid #e7e7e7;
-    border-right: 2px solid #1e1e1e;
-    border-bottom: 2px solid #1e1e1e;
-    border-left: 2px solid #e7e7e7;
-    cursor: pointer;
-  }
-  
-  .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: #04AA6D;
-    cursor: pointer;
-  }
-
 .tools {
-    height: 95px;
-    width: 95px;
+    height: 100px;
+    width: 100px;
     border-top: 2px solid #e7e7e7;
     border-right: 2px solid #1e1e1e;
     border-bottom: 2px solid #1e1e1e;
     border-left: 2px solid #e7e7e7;
     box-shadow: 0px 0px 3px 0px #1e1e1e;
+    cursor: pointer;
 }
 
 .tools:hover {
@@ -152,12 +147,15 @@ body {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
-    gap: 1px;
     background: #000000;
     border-top: 2px solid #1e1e1e;
     border-right: 2px solid #e7e7e7;
     border-bottom: 2px solid #e7e7e7;
     border-left: 2px solid #1e1e1e;
+}
+
+.toggle-grid {
+    gap: 1px;
 }
 
 .grid-item {
@@ -186,6 +184,10 @@ body {
     grid-template-columns: repeat(14, 1fr);
     grid-template-rows: 1fr, 1fr;
     padding: 10px;
+}
+
+.preset {
+    cursor: pointer;
 }
 
 .color-1 {
