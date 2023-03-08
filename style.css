@@ -82,8 +82,11 @@ body {
 
 .menu-item {
     font-size: 20px;
-    border-bottom: 2px solid #1e1e1e;
     cursor: pointer;
+}
+
+.menu-item:hover {
+    color: red;
 }
 
 .slider {
@@ -146,7 +149,11 @@ body {
 .canvas {
     height: 512px;
     width: 512px;
-    background: #ffffff;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    gap: 1px;
+    background: #000000;
     border-top: 2px solid #1e1e1e;
     border-right: 2px solid #e7e7e7;
     border-bottom: 2px solid #e7e7e7;
@@ -155,7 +162,6 @@ body {
 
 .grid-item {
     background-color: #ffffff;
-    border: 1px solid black;
 }
 
 .grid-item-colored {
