@@ -1,5 +1,4 @@
 const gridContainer = document.querySelector(".canvas");
-const gridBlocks = document.querySelectorAll(".grid-item");
 const buttonNew = document.querySelector("#menu-new");
 const inputBox = document.querySelector(".input-box");
 const buttonClear = document.querySelector("#menu-clear");
@@ -12,6 +11,7 @@ const eraser = document.querySelector(".eraser");
 const colorPicker = document.querySelector(".color-picker");
 let presetColor = document.querySelectorAll(".preset");
 
+// INPUT CANVAS SIZE
 let chosenPixels;
 let canvas;
 function myCanvas(input) {
@@ -22,6 +22,7 @@ function myCanvas(input) {
     }
 }
 
+// NEW CANVAS
 buttonNew.addEventListener("click", function() {    
 
     while(gridContainer.hasChildNodes()) {
@@ -37,8 +38,21 @@ buttonNew.addEventListener("click", function() {
     if(chosenPixels <= 64) {
         for(i = 0; i < canvas; i++) {
             const gridBlock = document.createElement("div");
-
             gridContainer.appendChild(gridBlock).classList.add("grid-item");
+            gridBlock.addEventListener("mousedown", function(e) {
+                if(e.buttons !== 1) {
+                    return;
+                } else if(e.buttons == 1) {
+                    gridBlock.style.backgroundColor = "#000000";
+                }
+            });
+            gridBlock.addEventListener("mousemove", function(e) {
+                if(e.buttons !== 1) {
+                    return;
+                } else if(e.buttons == 1) {
+                    gridBlock.style.backgroundColor = "#000000";
+                }
+            });
         }
     } else {
         while(gridContainer.hasChildNodes()) {
@@ -48,15 +62,15 @@ buttonNew.addEventListener("click", function() {
 
 });
 
+// CLEAR THE CANVAS
 buttonClear.addEventListener("click", function() {
+    const gridBlocks = document.querySelectorAll(".grid-item");
     for(let block of gridBlocks) {
-        block.classList.remove("grid-item-colored");
-        block.classList.add("grid-item");
+        block.style.backgroundColor = "#ffffff";
     }
 });
 
-
-
+// TOGGLE THE GRID
 buttonToggle.addEventListener("click", function() {
     gridContainer.classList.toggle("toggle-grid");
 });
