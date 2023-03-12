@@ -3,6 +3,7 @@ const buttonNew = document.querySelector("#menu-new");
 const inputBox = document.querySelector(".input-box");
 const buttonClear = document.querySelector("#menu-clear");
 const buttonToggle = document.querySelector("#menu-toggle");
+const currentColor = document.querySelector(".current-color");
 const pencil = document.querySelector(".pencil");
 const pencilRainbow = document.querySelector(".pencil-rainbow");
 const fill = document.querySelector(".fill");
@@ -17,14 +18,9 @@ function createCanvas() {
     if(chosenPixels <= 64) {
         for(i = 0; i < canvas; i++) {
             const gridBlock = document.createElement("div");
-            // gridContainer.appendChild(gridBlock).classList.add("grid-item");
             gridContainer.appendChild(gridBlock).setAttribute("class", "grid-item");
-            gridBlock.addEventListener("mousedown", defaultDraw);
-            gridBlock.addEventListener("mousemove", draw);
-            // gridBlock.addEventListener("mouseenter", function(e) {
-            //     randomColor(e);
-            //     draw(e);
-            // });
+            // gridBlock.addEventListener("mousedown", defaultDraw);
+            // gridBlock.addEventListener("mousemove", draw);
         }
     } else {
         while(gridContainer.hasChildNodes()) {
@@ -78,9 +74,6 @@ buttonToggle.addEventListener("click", function() {
     gridContainer.classList.toggle("toggle-grid");
 });
 
-
-
-
 // DRAW FUNCTIONALITY----------------------------------
 
 function draw(e) {
@@ -92,6 +85,15 @@ function draw(e) {
     }
 }
 
+function erase(e) {
+
+    if(e.buttons !== 1) {
+        return;
+    } else if(e.buttons == 1) {
+        e.target.style.backgroundColor = "#ffffff";
+    }
+}
+
 // TOOLS AND PRESET COLORS------------------------------
 
 let chosenColor = "#000000";
@@ -100,6 +102,11 @@ let rgbColor;
 function defaultDraw(e) {
     e.preventDefault(e);
     draw(e);
+}
+
+function defaultErase(e) {
+    e.preventDefault(e);
+    erase(e);
 }
 
 function randomColor() {
@@ -115,15 +122,15 @@ function rainbow(e) {
     draw(e);
 }
 
-function fillFunction(e) {
+function fillFunction() {
     const gridBlocks = document.querySelectorAll(".grid-item");
     for(let gridBlock of gridBlocks) {
         gridBlock.style.backgroundColor = chosenColor;
     }
 }
 
-function dropletFunction() {
-
+function dropletFunction(e) {
+    chosenColor = e.target.style.backgroundColor;
 }
 
 //PENCIL-----
@@ -132,11 +139,16 @@ pencil.addEventListener("click", function() {
     pencilRainbow.style.border = "";
     fill.style.border = "";
     droplet.style.border = "";
+    eraser.style.border = "";
 
     const gridBlocks = document.querySelectorAll(".grid-item");
     for(let gridBlock of gridBlocks) {
+        gridBlock.removeEventListener("mousedown", dropletFunction);
         gridBlock.removeEventListener("mouseenter", rainbow);
         gridBlock.removeEventListener("mouseup", fillFunction);
+        gridBlock.removeEventListener("mousedown", defaultErase);
+        gridBlock.removeEventListener("mousemove", erase);
+        gridBlock.addEventListener("mousedown", defaultDraw);
         gridBlock.addEventListener("mousemove", draw);
     }
 });
@@ -147,10 +159,14 @@ pencilRainbow.addEventListener("click", function() {
     pencil.style.border = "";
     fill.style.border = "";
     droplet.style.border = "";
+    eraser.style.border = "";
 
     const gridBlocks = document.querySelectorAll(".grid-item");
     for(let gridBlock of gridBlocks) {
+        gridBlock.removeEventListener("mousedown", dropletFunction);
         gridBlock.removeEventListener("mouseup", fillFunction);
+        gridBlock.removeEventListener("mousedown", defaultErase);
+        gridBlock.removeEventListener("mousemove", erase);
         gridBlock.addEventListener("mouseenter", rainbow);
         gridBlock.addEventListener("mousemove", draw);
     }
@@ -162,11 +178,15 @@ fill.addEventListener("click",function () {
     pencilRainbow.style.border = "";
     pencil.style.border = "";
     droplet.style.border = "";
+    eraser.style.border = "";
 
     const gridBlocks = document.querySelectorAll(".grid-item");
     for(let gridBlock of gridBlocks) {
+        gridBlock.removeEventListener("mousedown", dropletFunction);
         gridBlock.removeEventListener("mouseenter", rainbow);
         gridBlock.removeEventListener("mousemove", draw);
+        gridBlock.removeEventListener("mousedown", defaultErase);
+        gridBlock.removeEventListener("mousemove", erase);
         gridBlock.addEventListener("mouseup", fillFunction);
     }
 });
@@ -177,8 +197,39 @@ droplet.addEventListener("click", function() {
     fill.style.border = "";
     pencilRainbow.style.border = "";
     pencil.style.border = "";
+    eraser.style.border = "";
 
+    const gridBlocks = document.querySelectorAll(".grid-item");
+    for(let gridBlock of gridBlocks) {
+        gridBlock.removeEventListener("mouseenter", rainbow);
+        gridBlock.removeEventListener("mousedown", defaultDraw);
+        gridBlock.removeEventListener("mousemove", draw);
+        gridBlock.removeEventListener("mousedown", defaultErase);
+        gridBlock.removeEventListener("mousemove", erase);
+        gridBlock.removeEventListener("mouseup", fillFunction);
+        gridBlock.addEventListener("mousedown", dropletFunction);
+    }
 
+});
+
+//ERASER-----
+eraser.addEventListener("click", function() {
+    eraser.style.border = "2px solid red";
+    droplet.style.border = "";
+    fill.style.border = "";
+    pencilRainbow.style.border = "";
+    pencil.style.border = "";
+
+    chosenColor = "#ffffff";
+
+    const gridBlocks = document.querySelectorAll(".grid-item");
+    for(let gridBlock of gridBlocks) {
+        gridBlock.removeEventListener("mousedown", dropletFunction);
+        gridBlock.removeEventListener("mouseenter", rainbow);
+        gridBlock.removeEventListener("mouseup", fillFunction);
+        gridBlock.addEventListener("mousedown", defaultErase);
+        gridBlock.addEventListener("mousemove", erase);
+    }
 
 });
 
@@ -186,12 +237,12 @@ droplet.addEventListener("click", function() {
 for(let color of presetColor) {
     color.addEventListener("click", function() {
         chosenColor = this.dataset.value;
-        console.log(this.dataset.value);
     });
 }
 
-
-
+colorPicker.addEventListener("change", function() {
+    chosenColor = this.value;
+});
 
 
 
