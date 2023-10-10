@@ -1,6 +1,6 @@
 ![Header](./github-sketch-banner.jpg)
 
-# THE ODIN PROJECT Etch-a-Sketch
+# Etch-a-Sketch
 
 ### Languages and Tools used in this project
 
